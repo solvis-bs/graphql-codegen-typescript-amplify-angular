@@ -41,7 +41,7 @@ export class AmplifyAngularVisitor extends ClientSideBaseVisitor<
     operationResultType: string,
     operationVariablesTypes: string
   ): string {
-    const serviceName = camelCase(this.convertName(node));
+    const serviceName = `${camelCase(this.convertName(node))}${operationType}`;
     const firstChild = node.selectionSet.selections[0];
     let firstChildName: string | undefined;
     if (firstChild.kind === 'Field') {

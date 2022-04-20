@@ -32,7 +32,7 @@ export const plugin: PluginFunction<AmplifyAngularRawPluginConfig> = (
       `@Injectable({`,
       `  providedIn: "root"`,
       `})`,
-      'export class ApiService {',
+      'export class GeneratedApiService {',
       ...visitorResult.definitions.filter((t) => typeof t === 'string'),
       '}\n',
     ].join('\n'),
