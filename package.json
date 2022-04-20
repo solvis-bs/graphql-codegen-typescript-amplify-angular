@@ -10,7 +10,9 @@
   "scripts": {
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write --list-different .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "build": "tsc",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@graphql-codegen/plugin-helpers": "^2.4.0",
