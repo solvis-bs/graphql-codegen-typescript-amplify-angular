@@ -4,7 +4,7 @@
   "description": "GraphQL Code Generator plugin for AWS amplify and Appsync",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dotansimha/graphql-code-generator.git"
+    "url": "https://github.com/solvis-bs/graphql-codegen-typescript-amplify-angular.git"
   },
   "license": "MIT",
   "scripts": {
