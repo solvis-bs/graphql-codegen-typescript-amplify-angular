@@ -1,6 +1,6 @@
 {
   "name": "graphql-codegen-typescript-amplify-angular",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "GraphQL Code Generator plugin for AWS amplify and Appsync",
   "repository": {
     "type": "git",
