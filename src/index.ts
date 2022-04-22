@@ -24,18 +24,11 @@ export const plugin: PluginFunction<AmplifyAngularRawPluginConfig> = (
   ];
 
   const visitor = new AmplifyAngularVisitor(schema, allFragments, config, documents);
-  const visitorResult = oldVisit(allAst, { leave: visitor });
+  oldVisit(allAst, { leave: visitor });
 
   return {
     prepend: visitor.getImports(),
-    content: [
-      `@Injectable({`,
-      `  providedIn: "root"`,
-      `})`,
-      'export class GeneratedApiService {',
-      ...visitorResult.definitions.filter((t) => typeof t === 'string'),
-      '}\n',
-    ].join('\n'),
+    content: visitor.getContent(),
   };
 };
 

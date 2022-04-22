@@ -15,6 +15,11 @@ export class AmplifyAngularVisitor extends ClientSideBaseVisitor<
   AmplifyAngularRawPluginConfig,
   AmplifyAngularPluginConfig
 > {
+  private _operationContent: {
+    interfaces: string[];
+    methods: string[];
+  } = { interfaces: [], methods: [] };
+
   constructor(
     schema: GraphQLSchema,
     fragments: LoadedFragment[],
@@ -34,6 +39,19 @@ export class AmplifyAngularVisitor extends ClientSideBaseVisitor<
     ];
   }
 
+  public getContent() {
+    return [
+      ...this._operationContent.interfaces,
+      '',
+      `@Injectable({`,
+      `  providedIn: "root"`,
+      `})`,
+      'export class GeneratedApiService {',
+      ...this._operationContent.methods,
+      '}\n',
+    ].join('\n');
+  }
+
   protected buildOperation(
     node: OperationDefinitionNode,
     documentVariableName: string,
@@ -41,25 +59,36 @@ export class AmplifyAngularVisitor extends ClientSideBaseVisitor<
     operationResultType: string,
     operationVariablesTypes: string
   ): string {
-    const serviceName = camelCase(this.convertName(node));
+    const serviceName = this.convertName(node);
     const firstChild = node.selectionSet.selections[0];
     let firstChildName: string | undefined;
+    const noInput = node.variableDefinitions.length === 0;
+    const operationResultTypeName = `${serviceName}Result`;
     if (firstChild.kind === 'Field') {
       firstChildName = firstChild.name.value;
       operationResultType = `${operationResultType}['${firstChildName}']`;
     }
+
+    this._operationContent.interfaces.push(`export type ${operationResultTypeName} = ${operationResultType};`);
+
+    let inputVariables = '';
+    let inputArgument = '';
+    if (!noInput) {
+      inputVariables = ', input';
+      inputArgument = `input: ${operationVariablesTypes}`;
+    }
+
     const operations = print(node);
     const indentedOperations = operations.replace(/\n/g, '\n    ');
-
-    const content = `
-  async ${serviceName}(input:${operationVariablesTypes}): Promise<${operationResultType}> {
+    this._operationContent.methods.push(`
+  async ${camelCase(serviceName)}(${inputArgument}): Promise<${operationResultTypeName}> {
     const statement = \`${indentedOperations}\`;
     const response = (await API.graphql(
-      graphqlOperation(statement, input)
+      graphqlOperation(statement${inputVariables})
     )) as any;
-    return response.data${firstChildName != null ? `.${firstChildName}` : ''} as ${operationResultType};
-  }`;
+    return response.data${firstChildName != null ? `.${firstChildName}` : ''} as ${operationResultTypeName};
+  }`);
 
-    return content;
+    return null;
   }
 }
