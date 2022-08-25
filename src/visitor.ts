@@ -35,7 +35,7 @@ export class AmplifyAngularVisitor extends ClientSideBaseVisitor<
     return [
       `/* eslint-disable */`,
       `import { Injectable } from '@angular/core';`,
-      `import API, { graphqlOperation } from '@aws-amplify/api-graphql';`,
+      `import { API, graphqlOperation } from 'aws-amplify';`,
     ];
   }
 
