@@ -63,5 +63,6 @@
     "dist/**/*",
     "LICENSE",
     "README.md"
-  ]
+  ],
+  "packageManager": "yarn@3.2.3"
 }
