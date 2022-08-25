@@ -857,10 +857,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^14.18.26":
-  version: 14.18.26
-  resolution: "@types/node@npm:14.18.26"
-  checksum: c6ac3f9d4f6f77c0fa5ac17757779ad4d9835abfe3af5708b7552597cb5c7c1103e83499ccaf767a1cfa70040990bcf3f58761c547051dc8d5077f3c419091b1
+"@types/node@npm:16.x.x":
+  version: 16.11.56
+  resolution: "@types/node@npm:16.11.56"
+  checksum: b4efade16eb08a39810921c54a1637e69c8f3184a20d87e8fe74d557d9bda73f0829ac318e2a30a32b1903e4b099812defd1dfe438be70b98dbfbea5b0d99a53
   languageName: node
   linkType: hard
 
@@ -1086,13 +1086,6 @@ __metadata:
   version: 4.0.0
   resolution: "auto-bind@npm:4.0.0"
   checksum: 00cad71cce5742faccb7dd65c1b55ebc4f45add4b0c9a1547b10b05bab22813230133b0c892c67ba3eb969a4524710c5e43cc45c72898ec84e56f3a596e7a04f
-  languageName: node
-  linkType: hard
-
-"auto-bind@npm:~5.0.1":
-  version: 5.0.1
-  resolution: "auto-bind@npm:5.0.1"
-  checksum: 44a6d8d040c4382e761922f8fa1b044e18ddefbc855fecee0c76ec6b4e6fc74adda21026bc86e190833e05f52b4b6615372c2a83a734858f8395b1e2a98b253a
   languageName: node
   linkType: hard
 
@@ -2044,10 +2037,10 @@ __metadata:
   dependencies:
     "@graphql-codegen/plugin-helpers": ^2.6.2
     "@graphql-codegen/visitor-plugin-common": 2.12.1
-    "@types/node": ^14.18.26
+    "@types/node": 16.x.x
     "@typescript-eslint/eslint-plugin": ^5.35.1
     "@typescript-eslint/parser": ^5.35.1
-    auto-bind: ~5.0.1
+    auto-bind: ~4.0.0
     change-case-all: ^1.0.14
     eslint: ^8.22.0
     eslint-plugin-import: ^2.26.0
